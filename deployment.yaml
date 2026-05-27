@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: groq-dashboard-deployment
+  labels:
+    app: groq-dashboard
+spec:
+  replicas: 2 # Runs two instances for high availability
+  selector:
+    matchLabels:
+      app: groq-dashboard
+  template:
+    metadata:
+      labels:
+        app: groq-dashboard
+    spec:
+      containers:
+      - name: dashboard
+        image: mbattini/groq-chat-dashboard:v1
+        ports:
+        - containerPort: 8501
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"

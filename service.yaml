@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: groq-dashboard-service
+spec:
+  type: NodePort # 👈 Changed from LoadBalancer to NodePort
+  selector:
+    app: groq-dashboard
+  ports:
+    - protocol: TCP
+      port: 80        # The port cluster components would use
+      targetPort: 8501 # Streamlit's port inside your container
+      nodePort: 31227  # 👈 Explicitly tell K8s to map it to this external port
