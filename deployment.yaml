@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: dashboard
-        image: mbattini/groq-chat-dashboard:v1
+        image: mbattini/groq-chat-dashboard:v2
+        imagePullPolicy: Always
         ports:
         - containerPort: 8501
         resources:
